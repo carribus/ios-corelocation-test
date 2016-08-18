@@ -58,8 +58,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("Locations received: \(locations.count) points")
         for loc in locations {
-            latitudeLabel.text = String(loc.coordinate.latitude)
-            longitudeLabel.text = String(loc.coordinate.longitude)
+            print(loc)
+            latitudeLabel.text = "Latitude: \(loc.coordinate.latitude)"
+            longitudeLabel.text = "Longitude: \(loc.coordinate.longitude)"
         }
     }
 
