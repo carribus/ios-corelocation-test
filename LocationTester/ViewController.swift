@@ -27,15 +27,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.init(coder: aDecoder)
         self.locMgr = CLLocationManager()
         self.distance = loadDistanceTravelled()
-        print(distance)
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        print("viewDidLoad()")
-
         // intiailise the location manager
         switch CLLocationManager.authorizationStatus() {
         case    .Denied:
@@ -56,7 +53,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         locMgr.desiredAccuracy = kCLLocationAccuracyBest
         locMgr.startUpdatingLocation()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,8 +107,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        print("Authorisation status changed to \(status)")
-        print(status.rawValue)
+        print("Authorisation status changed to \(status.rawValue)")
     }
 }
 
