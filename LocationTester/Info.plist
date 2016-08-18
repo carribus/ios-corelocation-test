@@ -44,9 +44,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationUsageDescription</key>
-    <string>NSLocationUsageDescription</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>NSLocationWhenInUseUsageDescription</string>
-   
+	<string>NSLocationUsageDescription</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow location monitoring while the app is in use?</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Allow location monitoring even when the app is in the background?</string>
 </dict>
 </plist>
