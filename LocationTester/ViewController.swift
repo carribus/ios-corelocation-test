@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -22,6 +23,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var altitudeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var map: MKMapView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -45,6 +47,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             break
         }
 
+        map.scrollEnabled = false
+        map.zoomEnabled = true
+        map.rotateEnabled = true
+        map.showsUserLocation = true
+        
         locMgr.delegate = self
         locMgr.requestAlwaysAuthorization()
 
@@ -70,17 +77,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func updateDisplay(loc: CLLocation) {
-        latitudeLabel.text = "Latitude: \(loc.coordinate.latitude)"
-        longitudeLabel.text = "Longitude: \(loc.coordinate.longitude)"
-        speedLabel.text = "Speed: \(loc.speed >= 0.0 ? loc.speed : 0.0) m/s"
-        altitudeLabel.text = "Altitude: \(loc.altitude)"
-        distanceLabel.text = "Distance travelled: \(String(format: "%.2f meters", distance))"
+        latitudeLabel.text = "\(loc.coordinate.latitude)"
+        longitudeLabel.text = "\(loc.coordinate.longitude)"
+        speedLabel.text = "\(loc.speed >= 0.0 ? loc.speed : 0.0) m/s"
+        altitudeLabel.text = "\(loc.altitude)"
+        distanceLabel.text = "\(String(format: "%.2f meters", distance))"
+        
+        updateMap(loc)
+    }
+    
+    func updateMap(loc: CLLocation) {
+        let center = CLLocationCoordinate2D(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
+        map.region = region
     }
     
     // MARK: Actions
     @IBAction func resetButtonPressed(sender: UIButton) {
         self.distance = 0.0
         saveDistanceTravelled(self.distance)
+        print("Reset button pressed")
     }
 
     // MARK: CLLocationManagerDelegate
@@ -89,11 +105,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             if loc.speed >= 0.0 {
                 print("1. \(distance)")
                 if let lastLoc = lastLocation {
-                    print("Updating distance")
                     distance += loc.distanceFromLocation(lastLoc)
                 }
-                print("2. \(distance)")
-                print("last location: \(lastLocation)")
                 self.lastLocation = loc;
             }
             
