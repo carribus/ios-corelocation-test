@@ -18,11 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bd2-gG-vDy">
-                                <rect key="frame" x="20" y="116" width="560" height="284"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="bd2-gG-vDy">
+                                <rect key="frame" x="20" y="52" width="560" height="466"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="yfS-Pr-YwE">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="109"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pete's Location Tracker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaM-jt-CPV">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="33"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <color key="textColor" red="0.30989366611299729" green="0.19702155822252376" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="yfS-Pr-YwE">
+                                        <rect key="frame" x="0.0" y="58" width="560" height="208"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Mn1-ZJ-438">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="105"/>
@@ -98,7 +104,7 @@
                                         <color key="backgroundColor" red="0.93316426701570676" green="0.93316426701570676" blue="0.93316426701570676" alpha="1" colorSpace="calibratedRGB"/>
                                     </stackView>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIY-Bm-kUF">
-                                        <rect key="frame" x="0.0" y="109" width="560" height="175"/>
+                                        <rect key="frame" x="0.0" y="291" width="560" height="175"/>
                                     </mapView>
                                 </subviews>
                             </stackView>
@@ -112,11 +118,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="bd2-gG-vDy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="7Yz-bB-HRK"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jHq-Dy-Eo0" secondAttribute="bottom" constant="20" id="MH5-Wn-0YL"/>
-                            <constraint firstItem="jHq-Dy-Eo0" firstAttribute="top" secondItem="bd2-gG-vDy" secondAttribute="bottom" constant="150" id="brc-Fe-0NF"/>
                             <constraint firstItem="jHq-Dy-Eo0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="d6r-e0-tjx"/>
                             <constraint firstItem="bd2-gG-vDy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="dQ6-lJ-QF0"/>
-                            <constraint firstItem="bd2-gG-vDy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="96" id="fl3-po-aF1"/>
+                            <constraint firstItem="jHq-Dy-Eo0" firstAttribute="top" secondItem="bd2-gG-vDy" secondAttribute="bottom" constant="32" id="e9A-8i-G0I"/>
+                            <constraint firstItem="bd2-gG-vDy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="fl3-po-aF1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jHq-Dy-Eo0" secondAttribute="trailing" id="l02-k7-7K1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bd2-gG-vDy" secondAttribute="trailing" id="pXo-WE-vb6"/>
                         </constraints>

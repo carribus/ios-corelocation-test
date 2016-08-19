@@ -52,6 +52,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         map.rotateEnabled = true
         map.showsUserLocation = true
         
+        initMap()
+        
         locMgr.delegate = self
         locMgr.requestAlwaysAuthorization()
 
@@ -77,19 +79,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func updateDisplay(loc: CLLocation) {
-        latitudeLabel.text = "\(loc.coordinate.latitude)"
-        longitudeLabel.text = "\(loc.coordinate.longitude)"
+        latitudeLabel.text = "\(String(format: "%.6f", loc.coordinate.latitude))"
+        longitudeLabel.text = "\(String(format: "%.6f", loc.coordinate.longitude))"
         speedLabel.text = "\(loc.speed >= 0.0 ? loc.speed : 0.0) m/s"
-        altitudeLabel.text = "\(loc.altitude)"
+        altitudeLabel.text = "\(String(format: "%.2f meters", loc.altitude))"
         distanceLabel.text = "\(String(format: "%.2f meters", distance))"
         
         updateMap(loc)
     }
     
-    func updateMap(loc: CLLocation) {
-        let center = CLLocationCoordinate2D(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
+    func initMap() {
+        let center = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
         map.region = region
+    }
+    
+    func updateMap(loc: CLLocation) {
+        map.region.center = CLLocationCoordinate2D(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude)
     }
     
     // MARK: Actions
